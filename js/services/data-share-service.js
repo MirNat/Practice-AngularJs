@@ -1,6 +1,3 @@
-/**
- * Created by natallia.mireyka on 07.08.2015.
- */
 (function () {
     "use strict";
     angular.module('chatApp').service("dataShareService", function () {

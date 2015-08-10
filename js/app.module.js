@@ -1,3 +1,3 @@
 (function () {
-  angular.module('chatApp', ['ngRoute','ui.bootstrap', 'checklist-model']);
+    angular.module('chatApp', ['ngRoute', 'ui.bootstrap', 'checklist-model']);
 })();

@@ -36,7 +36,6 @@
                     }
                 });
 
-                /*$scope.$on("addRoom", function (event, updatedRoom) {*/
                 modalInstance.result.then(function (updatedRoom) {
                     for (var i in $scope.rooms) {
                         if ($scope.rooms[i].id == updatedRoom.id) {
@@ -52,7 +51,7 @@
                     templateUrl: 'modals/deleteRoomModalDialog.html',
                     controller: 'publicRoomController',
                     resolve: {
-                        editMode: function () {
+                        isEditMode: function () {
                             return false;
                         },
                         roomId: function () {
@@ -97,11 +96,6 @@
                     });
                 }
             }, true);
-
-            //$scope.
-            /*$http.get('api/contacts/?id=' + contactId).success(function (data) {
-             $scope.contact = data.data;
-             var modalInstance = $modal.open({*/
         }
     )
     ;

@@ -23,7 +23,7 @@
                         $scope.selectedRoom.messages.push(newMessage);
                         $scope.newMessageText = "";
                     }, function () {
-                       console.log('Error. Can`t send message.');
+                        console.log('Error. Can`t send message.');
                     });
                 }
             };

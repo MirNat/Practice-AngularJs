@@ -28,7 +28,7 @@
                 if ($scope.isEditMode) {
                     var promiseUpdatePrivateRoom = privateRoomService.update($scope.room);
                     promiseUpdatePrivateRoom.then(function (editedPrivateRoom) {
-                        if(editedPrivateRoom){
+                        if (editedPrivateRoom) {
                             $modalInstance.close($scope.room);
                         }
                     }, function () {
@@ -37,7 +37,7 @@
                 } else {
                     var promiseCreatePrivateRoom = privateRoomService.create($scope.room);
                     promiseCreatePrivateRoom.then(function (createdPrivateRoomId) {
-                        if(createdPrivateRoomId) {
+                        if (createdPrivateRoomId) {
                             $scope.room.id = createdPrivateRoomId;
                             $modalInstance.close($scope.room);
                         }

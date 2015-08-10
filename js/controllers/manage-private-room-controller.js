@@ -27,7 +27,7 @@
                     templateUrl: 'modals/deleteRoomModalDialog.html',
                     controller: 'privateRoomController',
                     resolve: {
-                        editMode: function () {
+                        isEditMode: function () {
                             return false;
                         },
                         roomId: function () {
@@ -59,7 +59,7 @@
                 });
             };
 
-           $scope.$watch(function () {
+            $scope.$watch(function () {
                 return dataShareService.getCurrentUserId();
             }, function (newValue, oldValue) {
                 if (newValue != null) {
