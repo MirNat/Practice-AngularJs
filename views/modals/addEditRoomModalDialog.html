@@ -25,7 +25,7 @@
                             <span ng-repeat="user in allUsers">
                                 <input type="checkbox" checklist-model="room.users" checklist-value="user"
                                        tabindex="2"/>
-                                <span ng-disabled="{{user.id = currentUserId}}">{{user.name}}</span>
+                                <span>{{user.name}}</span>
                                 <br>
                             </span>
                         </div>
