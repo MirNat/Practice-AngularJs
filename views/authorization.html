@@ -1,0 +1,11 @@
+<form class="login-form" name="loginForm">
+    <h3>Please login</h3>
+    <input type="text" class="login-form-control" placeholder="Username" required autofocus="" ng-model="user.name"/>
+    <input type="password" class="login-form-control" placeholder="Password" required ng-model="user.password"/>
+    <button type="submit" class="btn btn-lg btn-primary btn-block login-form-button"
+            ng-click="authorize(user.name, user.password, loginForm)">
+        Login
+    </button>
+    <label class="alert alert-warning" ng-show="wrongAuthorized"> Unable to login. Wrong username or
+        password.</label>
+</form>

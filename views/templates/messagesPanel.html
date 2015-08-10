@@ -1,0 +1,22 @@
+<div class="col-md-8">
+    <div class="page-header">
+        <span ng-bind="selectedRoom.name"></span>
+    </div>
+    <div ng-repeat="message in selectedRoom.messages| orderBy:message.date">
+        <span ng-bind-template="{{message.date| date:'medium'}} {{message.authorName}}: {{message.text}}"> </span>
+        <br>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+    </div>
+    <form class="input-group col-md-8" name="sendMessageForm" id="send-message-form">
+        <input type="text" class="form-control" placeholder="Input your message here ... " ng-model="newMessageText"
+               on-enter="sendMessage(newMessageText)" required>
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit" ng-click="sendMessage(newMessageText, sendMessageForm)">
+                    Send
+                </button>
+            </span>
+    </form>
+</div>

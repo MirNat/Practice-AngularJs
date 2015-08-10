@@ -1,0 +1,27 @@
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <span ng-bind="roomTypeName"></span>
+            <button class="btn btn-default" type="button" ng-click="showAddRoomModal()">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="room in rooms| orderBy:room.id"
+               ng-click="showSelectedRoom(room.id)" tabindex="0">
+                <span ng-bind="room.name"></span>
+                <span class="badge" ng-bind="room.numberOfNotifications"></span>
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button" ng-click="showEditRoomModal(room.id)">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </button>
+                    <button class="btn btn-info" type="button" ng-click="showDeleteRoomModal(room.id)">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </span>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Interactive Chat</title>
+
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/styles.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+</head>
+<body>
+
+<div ng-app="chatApp">
+    <ng-view></ng-view>
+</div>
+
+<script src="../js/lib/angular.min.js"></script>
+<script src="../js/lib/angular-route.min.js"></script>
+<script type="text/javascript" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js"></script>
+<script src="../js/lib/jquery.min.js"></script>
+<script src="../js/lib/bootstrap.min.js"></script>
+<script src="../js/app.module.js"></script>
+<script src="../js/app.routes.js"></script>
+<script src="../js/services/user-service.js"></script>
+<script src="../js/services/data-initialize-service.js"></script>
+<script src="../js/services/data-share-service.js"></script>
+<script src="../js/controllers/authorization-controller.js"></script>
+<script src="../js/controllers/chat-controller.js"></script>
+<script src="../js/directives/room-panel.js"></script>
+<script src="../js/directives/messages-panel.js"></script>
+<script src="../js/services/public-room-service.js"></script>
+<script src="../js/services/private-room-service.js"></script>
+<script src="../js/services/message-service.js"></script>
+<script src="../js/controllers/manage-public-room-controller.js"></script>
+<script src="../js/controllers/manage-private-room-controller.js"></script>
+<script src="../js/controllers/message-controller.js"></script>
+<script src="../js/controllers/public-room-controller.js"></script>
+<script src="../js/controllers/private-room-controller.js"></script>
+</body>
+</html>
