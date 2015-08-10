@@ -32,6 +32,30 @@
                 });
             };
 
+            $scope.showEditRoomModal = function (editedRoomId) {
+                var modalInstance = $modal.open({
+                    templateUrl: 'modals/addEditRoomModalDialog.html',
+                    controller: 'privateRoomController',
+                    resolve: {
+                        isEditMode: function () {
+                            return true;
+                        },
+                        roomId: function () {
+                            return editedRoomId;
+                        }
+                    }
+                });
+
+                modalInstance.result.then(function (updatedRoom) {
+                    for (var i in $scope.rooms) {
+                        if ($scope.rooms[i].id == updatedRoom.id) {
+                            $scope.rooms[i] = updatedRoom;
+                            break;
+                        }
+                    }
+                });
+            };
+
             $scope.showDeleteRoomModal = function (deletedRoomId) {
                 var modalInstance = $modal.open({
                     templateUrl: 'modals/deleteRoomModalDialog.html',
