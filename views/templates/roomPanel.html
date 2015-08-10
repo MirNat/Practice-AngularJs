@@ -8,8 +8,17 @@
         </h3>
     </div>
     <div class="panel-body">
+        <form class="input-group" name="searchForm">
+            <input type="text" class="form-control" ng-model="searchedRoomName" required=""
+                   placeholder="Input name of searched room here ...">
+             <span class="input-group-btn">
+                 <button class="btn btn-primary search-button" type="submit" ng-click="searchRoom(searchForm)">
+                     Search
+                 </button>
+             </span>
+        </form>
         <ul class="list-group">
-            <li class="list-group-item" ng-repeat="room in rooms| orderBy:room.id"
+            <li class="list-group-item" ng-repeat="room in rooms| orderBy:room.id| filter:{name:confirmedSearchRoomName}"
                ng-click="showSelectedRoom(room.id)" tabindex="0">
                 <span ng-bind="room.name"></span>
                 <span class="badge" ng-bind="room.numberOfNotifications"></span>

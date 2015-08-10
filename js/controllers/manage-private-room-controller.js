@@ -4,6 +4,14 @@
             $scope.currentUserId = null;
             $scope.rooms = [];
             $scope.roomTypeName = 'Private Room';
+            $scope.confirmedSearchRoomName = '';
+            $scope.searchedRoomName = '';
+
+            $scope.searchRoom = function(searchForm){
+                if (searchForm.$valid) {
+                    $scope.confirmedSearchRoomName =  $scope.searchedRoomName;
+                }
+            };
 
             $scope.showAddRoomModal = function () {
                 var modalInstance = $modal.open({
@@ -13,7 +21,9 @@
                         isEditMode: function () {
                             return false;
                         },
-                        roomId: null
+                        roomId:  function () {
+                            return null;
+                        }
                     }
                 });
 

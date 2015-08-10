@@ -86,3 +86,8 @@ li.list-group-item:focus, li.list-group-item:hover, li.list-group-item:active, l
 .padding-left-30{
     padding-left: 30px;
 }
+
+.search-button{
+    padding-left: 17px;
+    padding-right: 16px;
+}

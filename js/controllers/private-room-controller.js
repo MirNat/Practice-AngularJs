@@ -5,7 +5,7 @@
         $scope.isEditMode = isEditMode;
         $scope.allUsers = [];
         $scope.room = {id: undefined, name: "", users: [], messages: []};
-        $scope.isPublicRoom = true;
+        $scope.isPublicRoom = false;
 
         var promiseGetAllUsers = userService.getAll();
         promiseGetAllUsers.then(function (users) {
