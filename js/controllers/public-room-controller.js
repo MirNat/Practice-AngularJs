@@ -1,11 +1,11 @@
 (function () {
     "use strict";
-    angular.module('chatApp').controller("publicRoomController", function ($scope, $modal, $modalInstance, publicRoomService, userService, dataShareService, editMode, roomId) {
+    angular.module('chatApp').controller("publicRoomController", function ($scope, $modal, $modalInstance, publicRoomService, userService, dataShareService, isEditMode, roomId) {
         $scope.currentUserId = dataShareService.getCurrentUserId();
-        $scope.editMode = editMode;
+        $scope.isEditMode = isEditMode;
         $scope.allUsers = [];
         $scope.room = {id: undefined, name: "", users: [], messages: []};
-        $scope.selectedUsers = [];
+        $scope.isPublicRoom = true;
 
         var promiseGetAllUsers = userService.getAll();
         promiseGetAllUsers.then(function (users) {
@@ -18,28 +18,29 @@
             var promiseGetPublicRoomById = publicRoomService.getById(roomId);
             promiseGetPublicRoomById.then(function (publicRoom) {
                 $scope.room = publicRoom;
-                if ($scope.editMode) {
-                    $scope.selectedUsers = publicRoom.users;
-                }
             }, function () {
                 console.log('Error. Can`t get public room to edit.');
             });
         }
 
-        $scope.addRoom = function (room) {
-            if (modalRoomForm.$valid) {
-                $scope.room.users = $scope.selectedUsers;
-                if (editMode) {
+        $scope.addRoom = function (addEditRoomModalForm) {
+            if (addEditRoomModalForm.$valid) {
+                if ($scope.isEditMode) {
                     var promiseUpdatePublicRoom = publicRoomService.update($scope.room);
                     promiseUpdatePublicRoom.then(function (editedPublicRoom) {
-                        //$modalInstance.close(editedPublicRoom);
+                        if(editedPublicRoom){
+                            $modalInstance.close($scope.room);
+                        }
                     }, function () {
                         console.log('Error. Can`t update public room.');
                     });
                 } else {
-                    var promiseCreatePublicRoom = publicRoomService.update($scope.room);
-                    promiseCreatePublicRoom.then(function (createdPublicRoom) {
-                        //$modalInstance.close(createdPublicRoom);
+                    var promiseCreatePublicRoom = publicRoomService.create($scope.room);
+                    promiseCreatePublicRoom.then(function (createdPublicRoomId) {
+                        if(createdPublicRoomId) {
+                            $scope.room.id = createdPublicRoomId;
+                            $modalInstance.close($scope.room);
+                        }
                     }, function () {
                         console.log('Error. Can`t create public room.');
                     });
@@ -58,15 +59,6 @@
 
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
-        };
-
-        $scope.isUsersSelected = function (id) {
-            var index = $scope.selectedUsers.indexOf(id);
-            if (index > -1) {
-                $scope.selectedUsers.splice(index, 1);
-            } else {
-                $scope.selectedUsers.push(id);
-            }
         };
     });
 })();

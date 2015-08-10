@@ -83,6 +83,6 @@ li.list-group-item:focus, li.list-group-item:hover, li.list-group-item:active, l
      display: block;
 }
 
-.padding-30{
-    padding: 30px;
+.padding-left-30{
+    padding-left: 30px;
 }

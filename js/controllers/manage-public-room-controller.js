@@ -10,7 +10,7 @@
                     templateUrl: 'modals/addEditRoomModalDialog.html',
                     controller: 'publicRoomController',
                     resolve: {
-                        editMode: function () {
+                        isEditMode: function () {
                             return false;
                         },
                         roomId: null
@@ -27,7 +27,7 @@
                     templateUrl: 'modals/addEditRoomModalDialog.html',
                     controller: 'publicRoomController',
                     resolve: {
-                        editMode: function () {
+                        isEditMode: function () {
                             return true;
                         },
                         roomId: function () {

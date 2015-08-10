@@ -10,7 +10,7 @@
                     templateUrl: 'modals/addEditRoomModalDialog.html',
                     controller: 'privateRoomController',
                     resolve: {
-                        editMode: function () {
+                        isEditMode: function () {
                             return false;
                         },
                         roomId: null
