@@ -13,7 +13,7 @@
                     $scope.wrongAuthorized = false;
                     dataShareService.setCurrentUserId(userId);
                     dataShareService.setCurrentUserName($scope.user.name);
-                    $location.path('/user');
+                    $location.path('/user').search('id', userId);//$location.path('/user');
                 }, function () {
                     $scope.wrongAuthorized = true;
                 });

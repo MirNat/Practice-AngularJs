@@ -16,7 +16,7 @@
             </div>
             <div class="panel-body">
                 <div class="list-group">
-                    <a href="#/user" class="list-group-item" ng-repeat="user in allUsers| orderBy:user.name">
+                    <a ng-href="#/user?id={{currentUserId}}" class="list-group-item" ng-repeat="user in allUsers| orderBy:user.name">
                         <span ng-bind="user.name"></span>
                     </a>
                 </div>

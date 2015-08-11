@@ -7,9 +7,9 @@
             $scope.confirmedSearchRoomName = '';
             $scope.searchedRoomName = '';
 
-            $scope.searchRoom = function(searchForm){
+            $scope.searchRoom = function (searchForm) {
                 if (searchForm.$valid) {
-                    $scope.confirmedSearchRoomName =  $scope.searchedRoomName;
+                    $scope.confirmedSearchRoomName = $scope.searchedRoomName;
                 }
             };
 
@@ -21,7 +21,7 @@
                         isEditMode: function () {
                             return false;
                         },
-                        roomId:  function () {
+                        roomId: function () {
                             return null;
                         }
                     }
@@ -93,19 +93,14 @@
                 });
             };
 
-            $scope.$watch(function () {
-                return dataShareService.getCurrentUserId();
-            }, function (newValue, oldValue) {
-                if (newValue != null) {
-                    $scope.currentUserId = newValue;
-                    var promiseGetRoomsList = privateRoomService.getAllInViewModelsFormatByUserId($scope.currentUserId);
-                    promiseGetRoomsList.then(function (rooms) {
-                        $scope.rooms = rooms;
-                    }, function () {
-                        console.log('Error. Can`t set private rooms list of current user.');
-                    });
-                }
-            }, true);
+
+            $scope.currentUserId = dataShareService.getCurrentUserId();
+            var promiseGetRoomsList = privateRoomService.getAllInViewModelsFormatByUserId($scope.currentUserId);
+            promiseGetRoomsList.then(function (rooms) {
+                $scope.rooms = rooms;
+            }, function () {
+                console.log('Error. Can`t set private rooms list of current user.');
+            });
         }
     );
 })();
