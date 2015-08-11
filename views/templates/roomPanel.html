@@ -18,7 +18,7 @@
              </span>
         </form>
         <ul class="list-group">
-            <li class="list-group-item" ng-repeat="room in rooms| orderBy:room.id| filter:{name:confirmedSearchRoomName}"
+            <li class="list-group-item" ng-repeat="room in rooms| orderBy:'name'| filter:{name:confirmedSearchRoomName}"
                ng-click="showSelectedRoom(room.id)" tabindex="0">
                 <span ng-bind="room.name"></span>
                 <span class="badge" ng-bind="room.numberOfNotifications"></span>

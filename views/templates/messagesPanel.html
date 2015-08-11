@@ -2,7 +2,7 @@
     <div class="page-header">
         <span ng-bind="selectedRoom.name"></span>
     </div>
-    <div ng-repeat="message in selectedRoom.messages| orderBy:message.date">
+    <div ng-repeat="message in selectedRoom.messages| orderBy:'date'">
         <span ng-bind-template="{{message.date| date:'medium'}} {{message.authorName}}: {{message.text}}"> </span>
         <br>
     </div>
