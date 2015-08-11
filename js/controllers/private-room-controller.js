@@ -10,6 +10,10 @@
         var promiseGetAllUsers = userService.getAll();
         promiseGetAllUsers.then(function (users) {
             $scope.allUsers = users;
+            var currentUser = $scope.allUsers.filter(function (item) {
+                return item.id ==  $scope.currentUserId;
+            })[0];
+            $scope.room.users.push(currentUser);
         }, function () {
             console.log('Error! Can`t get all users to show in private room modal dialog.');
         });
