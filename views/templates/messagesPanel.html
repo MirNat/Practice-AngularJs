@@ -2,7 +2,7 @@
     <div class="page-header">
         <span ng-bind="selectedRoom.name"></span>
     </div>
-    <div ng-repeat="message in selectedRoom.messages| orderBy:'date'">
+    <div ng-repeat="message in selectedRoom.messages">
         <span ng-bind-template="{{message.date| date:'medium'}} {{message.authorName}}: {{message.text}}"> </span>
         <br>
     </div>
@@ -14,7 +14,7 @@
         <input type="text" class="form-control" placeholder="Input your message here ... " ng-model="newMessageText"
                on-enter="sendMessage(newMessageText)" required>
             <span class="input-group-btn">
-                <button class="btn btn-primary" type="submit" ng-click="sendMessage(newMessageText, sendMessageForm)">
+                <button class="btn btn-primary" type="submit" ng-click="sendMessage(newMessageText, sendMessageForm)" ng-enter="sendMessage(newMessageText, sendMessageForm)">
                     Send
                 </button>
             </span>

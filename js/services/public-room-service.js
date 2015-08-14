@@ -1,29 +1,28 @@
 (function () {
     "use strict";
     angular.module('chatApp').service("publicRoomService", function ($q, $window, userService) {
-            var TimeInterval = 0;//1000;
+            var TIME_INTERVAL = 0;//1000;
             var self = this;
 
             self.getAll = function () {
                 return $q(function (resolve, reject) {
                     setTimeout(function () {
                         resolve(JSON.parse($window.localStorage.publicRooms));
-                    }, TimeInterval);
+                    }, TIME_INTERVAL);
                 });
             };
 
             self.getAllInViewModelsFormatByUserId = function (userId) {
                 return $q(function (resolve, reject) {
                     setTimeout(function () {
-                        var promiseGetUserById = userService.getById(userId);
-                        promiseGetUserById.then(function (user) {
+                        userService.getById(userId).then(function (user) {
                             if (user) {
                                 resolve(user.publicRoomViewModels);
                             }
                         }, function () {
                             console.log('Error. Can`t get public rooms list.');
                         });
-                    }, TimeInterval);
+                    }, TIME_INTERVAL);
                 });
             };
 
@@ -31,7 +30,7 @@
                 return $q(function (resolve, reject) {
                     setTimeout(function () {
                         if (item) {
-                            item.id = JSON.parse($window.localStorage.publicRooms).length + 1;
+                            item.id = ++JSON.parse($window.localStorage.publicRooms).length;
                             var storedPublicRooms = JSON.parse($window.localStorage.publicRooms);
                             storedPublicRooms.push(item);
                             $window.localStorage.publicRooms = JSON.stringify(storedPublicRooms);
@@ -39,7 +38,7 @@
                         } else {
                             console.log('Error. Can`t create public room because of wrong function`s parameter - item.');
                         }
-                    }, TimeInterval);
+                    }, TIME_INTERVAL);
                 });
             };
 
@@ -47,8 +46,7 @@
                 return $q(function (resolve, reject) {
                         setTimeout(function () {
                             if (item) {
-                                var promiseDeleteById = self.deleteById(item.id);
-                                promiseDeleteById.then(function (resultOfDeletion) {
+                                self.deleteById(item.id).then(function (resultOfDeletion) {
                                     if (resultOfDeletion) {
                                         var storedPublicRooms = JSON.parse($window.localStorage.publicRooms);
                                         storedPublicRooms.push(item);
@@ -61,7 +59,7 @@
                             } else {
                                 console.log('Error. Can`t update public room because of wrong function`s parameter - item.');
                             }
-                        }, TimeInterval);
+                        }, TIME_INTERVAL);
                     }
                 );
             };
@@ -81,7 +79,7 @@
                         } else {
                             console.log('Error. Can`t delete public room because of wrong function`s parameter - itemId.');
                         }
-                    }, TimeInterval);
+                    }, TIME_INTERVAL);
                 });
             };
 
@@ -89,16 +87,14 @@
                 return $q(function (resolve, reject) {
                     setTimeout(function () {
                         if (itemId && userId) {
-                            var promiseGetUserById = userService.getById(userId);
-                            promiseGetUserById.then(function (user) {
+                            userService.getById(userId).then(function (user) {
                                 if (user) {
                                     for (var i = 0; i < user.publicRoomViewModels.length; i++) {
                                         if (user.publicRoomViewModels[i].id === itemId) {
                                             user.publicRoomViewModels.splice(i, 1);
                                         }
                                     }
-                                    var promiseUpdateUserById = userService.update(user);
-                                    promiseUpdateUserById.then(function (isUserUpdated) {
+                                    userService.update(user).then(function (isUserUpdated) {
                                         if (isUserUpdated) {
                                             resolve(true);
                                         }
@@ -113,7 +109,7 @@
                             console.log('Error. Can`t delete public room because of wrong function`s parameter - itemId.');
                             reject(false);
                         }
-                    }, TimeInterval);
+                    }, TIME_INTERVAL);
                 });
             };
 
@@ -121,9 +117,8 @@
                 return $q(function (resolve, reject) {
                     setTimeout(function () {
                         if (itemId) {
-                            var promiseGetAllPublicRooms = self.getAll();
                             var publicRoom = {};
-                            promiseGetAllPublicRooms.then(function (publicRooms) {
+                            self.getAll().then(function (publicRooms) {
                                 publicRoom = publicRooms.filter(function (item) {
                                     return item.id == itemId;
                                 })[0];
@@ -136,7 +131,7 @@
                         } else {
                             console.log('Error. Can`t get public room because of wrong function`s parameter - itemId.');
                         }
-                    }, TimeInterval);
+                    }, TIME_INTERVAL);
                 });
             }
         }

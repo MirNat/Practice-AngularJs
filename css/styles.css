@@ -64,7 +64,7 @@ li.list-group-item:focus, li.list-group-item:hover, li.list-group-item:active, l
     padding: 5px 35px;
 }
 
-.breadcrumb a{
+.breadcrumb a {
     float: right;
 }
 
@@ -80,14 +80,14 @@ li.list-group-item:focus, li.list-group-item:hover, li.list-group-item:active, l
 }
 
 .modal {
-     display: block;
+    display: block;
 }
 
-.padding-left-30{
+.padding-left-30 {
     padding-left: 30px;
 }
 
-.search-button{
+.search-button {
     padding-left: 17px;
     padding-right: 16px;
 }

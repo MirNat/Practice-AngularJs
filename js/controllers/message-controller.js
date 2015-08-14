@@ -17,8 +17,7 @@
                         date: new Date(),
                         text: newMessageText
                     };
-                    var promiseCreateMessage = messageService.create(newMessage);
-                    promiseCreateMessage.then(function (newMessageId) {
+                    messageService.create(newMessage).then(function (newMessageId) {
                         newMessage.id = newMessageId;
                         $scope.selectedRoom.messages.push(newMessage);
                         $scope.newMessageText = "";

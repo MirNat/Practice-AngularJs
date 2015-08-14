@@ -7,8 +7,7 @@
         $scope.room = {id: undefined, name: "", users: [], messages: []};
         $scope.isPublicRoom = true;
 
-        var promiseGetAllUsers = userService.getAll();
-        promiseGetAllUsers.then(function (users) {
+        userService.getAll().then(function (users) {
             $scope.allUsers = users;
             var currentUser = $scope.allUsers.filter(function (item) {
                 return item.id ==  $scope.currentUserId;
@@ -19,8 +18,7 @@
         });
 
         if (roomId) {
-            var promiseGetPublicRoomById = publicRoomService.getById(roomId);
-            promiseGetPublicRoomById.then(function (publicRoom) {
+            publicRoomService.getById(roomId).then(function (publicRoom) {
                 $scope.room = publicRoom;
             }, function () {
                 console.log('Error. Can`t get public room to edit.');
@@ -30,8 +28,7 @@
         $scope.addRoom = function (addEditRoomModalForm) {
             if (addEditRoomModalForm.$valid) {
                 if ($scope.isEditMode) {
-                    var promiseUpdatePublicRoom = publicRoomService.update($scope.room);
-                    promiseUpdatePublicRoom.then(function (editedPublicRoom) {
+                    publicRoomService.update($scope.room).then(function (editedPublicRoom) {
                         if (editedPublicRoom) {
                             $modalInstance.close($scope.room);
                         }
@@ -39,8 +36,7 @@
                         console.log('Error. Can`t update public room.');
                     });
                 } else {
-                    var promiseCreatePublicRoom = publicRoomService.create($scope.room);
-                    promiseCreatePublicRoom.then(function (createdPublicRoomId) {
+                    publicRoomService.create($scope.room).then(function (createdPublicRoomId) {
                         if (createdPublicRoomId) {
                             $scope.room.id = createdPublicRoomId;
                             $modalInstance.close($scope.room);
@@ -53,8 +49,7 @@
         };
 
         $scope.deleteRoom = function () {
-            var promiseDeletePublicRoom = publicRoomService.deleteByIdFromUser($scope.room.id, $scope.currentUserId);
-            promiseDeletePublicRoom.then(function (isDeleted) {
+            publicRoomService.deleteByIdFromUser($scope.room.id, $scope.currentUserId).then(function (isDeleted) {
                 $modalInstance.close(isDeleted);
             }, function () {
                 console.log('Error. Can`t update public room.');

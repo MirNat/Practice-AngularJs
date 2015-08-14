@@ -77,6 +77,7 @@
                                 $scope.rooms.splice(i, 1);
                             }
                         }
+                        dataShareService.setSelectedRoom({id:0, name:"", messages:[]});
                     } else {
                         console.log('Error. Public room was not deleted.');
                     }
@@ -84,8 +85,7 @@
             };
 
             $scope.showSelectedRoom = function (selectedRoomId) {
-                var promiseGetSelectedPublicRoomById = publicRoomService.getById(selectedRoomId);
-                promiseGetSelectedPublicRoomById.then(function (selectedRoom) {
+                publicRoomService.getById(selectedRoomId).then(function (selectedRoom) {
                     dataShareService.setSelectedRoom(selectedRoom);
                     dataShareService.setIsSelectedRoomPublic(true);
                 }, function () {
@@ -95,8 +95,7 @@
 
 
             $scope.currentUserId = dataShareService.getCurrentUserId();
-            var promiseGetRoomsList = publicRoomService.getAllInViewModelsFormatByUserId($scope.currentUserId);
-            promiseGetRoomsList.then(function (rooms) {
+            publicRoomService.getAllInViewModelsFormatByUserId($scope.currentUserId).then(function (rooms) {
                 $scope.rooms = rooms;
             }, function () {
                 console.log('Error. Can`t set public rooms list of current user.');

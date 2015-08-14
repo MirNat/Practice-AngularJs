@@ -7,11 +7,10 @@
 
             if (!dataShareService.getCurrentUserId()) {
                 if ($routeParams["id"]) {
-                    dataShareService.setCurrentUserId($routeParams["id"]);
                     $scope.currentUserId = $routeParams["id"];
+                    dataShareService.setCurrentUserId($scope.currentUserId);
                     if (!$scope.currentUserName) {
-                        var promiseGetCurrentUser = userService.getById($routeParams["id"]);
-                        promiseGetCurrentUser.then(function (currentUser) {
+                        userService.getById($scope.currentUserId).then(function (currentUser) {
                             $scope.currentUserName = currentUser.name;
                             dataShareService.setCurrentUserName($scope.currentUserName);
                         }, function () {
@@ -22,8 +21,7 @@
                     $location.path('/authorize');
                 }
             }
-            var promiseGetAllUsers = userService.getAll();
-            promiseGetAllUsers.then(function (users) {
+            userService.getAll().then(function (users) {
                 $scope.allUsers = users;
             }, function () {
                 console.log('Error. Can`t get all users to display users list.');

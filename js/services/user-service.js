@@ -1,23 +1,22 @@
 (function () {
     "use strict";
     angular.module('chatApp').service("userService", function ($q, $window) {
-            var TimeInterval = 0;//1000;
+            var TIME_INTERVAL = 0;//1000;
             var self = this;
 
             self.getAll = function () {
                 return $q(function (resolve, reject) {
                     setTimeout(function () {
                         resolve(JSON.parse($window.localStorage.users));
-                    }, TimeInterval);
+                    }, TIME_INTERVAL);
                 });
             };
 
             self.authorize = function (username, password) {
                 return $q(function (resolve, reject) {
                     setTimeout(function () {
-                        var promiseGetAllUsers = self.getAll();
                         var user = {};
-                        promiseGetAllUsers.then(function (users) {
+                        self.getAll().then(function (users) {
                             user = users.filter(function (item) {
                                 return item.name == username && item.password == password;
                             })[0];
@@ -27,7 +26,7 @@
                                 reject(user);
                             }
                         });
-                    }, TimeInterval);
+                    }, TIME_INTERVAL);
                 });
             };
 
@@ -35,7 +34,7 @@
                 return $q(function (resolve, reject) {
                     setTimeout(function () {
                         if (item) {
-                            item.id = JSON.parse($window.localStorage.users).length + 1;
+                            item.id = ++JSON.parse($window.localStorage.users).length;
                             var storedUsers = JSON.parse($window.localStorage.users);
                             storedUsers.push(item);
                             $window.localStorage.users = JSON.stringify(storedUsers);
@@ -43,7 +42,7 @@
                         } else {
                             console.log('Error. Can`t create user because of wrong function`s parameter - item.');
                         }
-                    }, TimeInterval);
+                    }, TIME_INTERVAL);
                 });
             };
 
@@ -51,8 +50,7 @@
                 return $q(function (resolve, reject) {
                     setTimeout(function () {
                         if (item) {
-                            var promiseDeleteById = self.deleteById(item.id);
-                            promiseDeleteById.then(function (resultOfDeletion) {
+                            self.deleteById(item.id).then(function (resultOfDeletion) {
                                 if (resultOfDeletion) {
                                     var storedUsers = JSON.parse($window.localStorage.users);
                                     storedUsers.push(item);
@@ -65,7 +63,7 @@
                         } else {
                             console.log('Error. Can`t update user because of wrong function`s parameter - item.');
                         }
-                    }, TimeInterval);
+                    }, TIME_INTERVAL);
                 });
             };
 
@@ -84,7 +82,7 @@
                         } else {
                             console.log('Error. Can`t delete user because of wrong function`s parameter - itemId.');
                         }
-                    }, TimeInterval);
+                    }, TIME_INTERVAL);
                 });
             };
 
@@ -92,9 +90,8 @@
                 return $q(function (resolve, reject) {
                     setTimeout(function () {
                         if (itemId) {
-                            var promiseGetAllUsers = self.getAll();
                             var user = {};
-                            promiseGetAllUsers.then(function (users) {
+                            self.getAll().then(function (users) {
                                 user = users.filter(function (item) {
                                     return item.id == itemId;
                                 })[0];
@@ -107,7 +104,7 @@
                         } else {
                             console.log('Error. Can`t get user because of wrong function`s parameter - itemId.');
                         }
-                    }, TimeInterval);
+                    }, TIME_INTERVAL);
                 });
             };
         }

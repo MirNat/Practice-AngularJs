@@ -6,9 +6,15 @@
         </div>
     </div>
     <div class="col-md-4">
-        <div room-panel="" ng-controller="managePublicRoomController"></div>
-        <div room-panel="" ng-controller="managePrivateRoomController"></div>
-        <div all-users-panel="" ng-controller="chatController"></div>
+        <div ng-controller="managePublicRoomController">
+            <room-panel></room-panel>
+        </div>
+        <div ng-controller="managePrivateRoomController">
+            <room-panel></room-panel>
+        </div>
+        <div ng-controller="chatController">
+            <all-users-panel></all-users-panel>
+        </div>
     </div>
     <div messages-panel="" ng-controller="messageController"></div>
 </div>

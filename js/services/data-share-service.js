@@ -1,35 +1,35 @@
 (function () {
     "use strict";
     angular.module('chatApp').service("dataShareService", function () {
-        var _selectedRoom = {};
-        var _isSelectedRoomPublic = null;
-        var _currentUserId = null;
-        var _currentUserName = null;
+        var selectedRoom = {};
+        var isSelectedRoomPublic = null;
+        var currentUserId = null;
+        var currentUserName = null;
 
         return {
             getSelectedRoom: function () {
-                return _selectedRoom;
+                return selectedRoom;
             },
             setSelectedRoom: function (room) {
-                _selectedRoom = room;
+                selectedRoom = room;
             },
             getIsSelectedRoomPublic: function () {
-                return _isSelectedRoomPublic;
+                return isSelectedRoomPublic;
             },
             setIsSelectedRoomPublic: function (isPublic) {
-                _isSelectedRoomPublic = isPublic;
+                isSelectedRoomPublic = isPublic;
             },
             getCurrentUserId: function () {
-                return _currentUserId;
+                return currentUserId;
             },
             setCurrentUserId: function (id) {
-                _currentUserId = id;
+                currentUserId = id;
             },
             getCurrentUserName: function () {
-                return _currentUserName;
+                return currentUserName;
             },
             setCurrentUserName: function (name) {
-                _currentUserName = name;
+                currentUserName = name;
             }
         };
     });

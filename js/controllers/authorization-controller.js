@@ -8,8 +8,7 @@
         $scope.wrongAuthorized = false;
         $scope.authorize = function (name, password, loginForm) {
             if (loginForm.$valid) {
-                var promiseAuthorization = userService.authorize($scope.user.name, $scope.user.password);
-                promiseAuthorization.then(function (userId) {
+                    userService.authorize($scope.user.name, $scope.user.password).then(function (userId) {
                     $scope.wrongAuthorized = false;
                     dataShareService.setCurrentUserId(userId);
                     dataShareService.setCurrentUserName($scope.user.name);
